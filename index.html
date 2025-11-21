@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Correção de Provas</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Correção de Provas</h1>
+        <form action="/api/correcao" method="POST" enctype="multipart/form-data" class="card">
+            <h2>Correção Automática</h2>
+            <p class="instruction">Envie os dois arquivos (.txt, .csv, ou .pdf) no formato "Número Resposta" (ex: 46 A).</p>
+
+            <div class="form-group">
+                <label for="gabarito">1. Gabarito Oficial (.txt, .csv, .pdf):</label>
+                <div class="file-upload-container">
+                    <input type="file" id="gabarito" name="gabaritoFile" accept=".txt,.csv,.pdf" required>
+                    <label for="gabarito" class="file-upload-label">Escolher arquivo</label>
+                    <span id="gabarito-file-name" class="file-name">Nenhum arquivo escolhido</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="respostas">2. Respostas do Aluno (.txt, .csv, .pdf):</label>
+                <div class="file-upload-container">
+                    <input type="file" id="respostas" name="respostasFile" accept=".txt,.csv,.pdf" required>
+                    <label for="respostas" class="file-upload-label">Escolher arquivo</label>
+                    <span id="respostas-file-name" class="file-name">Nenhum arquivo escolhido</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Corrigir Prova</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('gabarito').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'Nenhum arquivo escolhido';
+            document.getElementById('gabarito-file-name').textContent = fileName;
+        });
+
+        document.getElementById('respostas').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'Nenhum arquivo escolhido';
+            document.getElementById('respostas-file-name').textContent = fileName;
+        });
+    </script>
+</body>
+</html>
